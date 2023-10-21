@@ -1,34 +1,36 @@
-const { Schema, Types} = require('mongoose');
+const { Schema, Types } = require("mongoose");
 
 const thoughtSchema = new Schema(
-    {
-        thoughtText: {
-            type: String,
-            required: true,
-            minLength: 1,
-            maxLength: 280,
-        },
-        createdAt: {
-            type: Date,
-            default: Date.now(),
-        },
-        username: {[
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'user',
-            }],
-            type: String,
-            required: true,
-        },
-        reactions: [
-            {
-            type: Schema.Types.Array,
-            ref: 'reactionSchema',
-            },
-        ],
+  {
+    thoughtText: {
+      type: String,
+      required: true,
+      minLength: 1,
+      maxLength: 280,
     },
-)
+    createdAt: {
+      type: Date,
+      default: Date.now(),
+    },
+    username: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "user",
+      },
+    ],
+    type: String,
+    required: true,
+  },
+  {
+    reactions: [
+      {
+        type: Schema.Types.Array,
+        ref: "reactionSchema",
+      },
+    ],
+  }
+);
 
-const thought = model('thought', thoughtSchema);
+const thought = model("thought", thoughtSchema);
 
 module.exports = thought;
