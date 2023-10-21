@@ -5,19 +5,30 @@ const thoughtSchema = new Schema(
         thoughtText: {
             type: String,
             required: true,
-            characters
+            minLength: 1,
+            maxLength: 280,
         },
-        createdAt
-
-        Date
-        Set default value to the current timestamp
-        Use a getter method to format the timestamp on query
-        username (The user that created this thought)
-        
-        String
-        Required
-        reactions (These are like replies)
-        
-        Array of nested documents created with the reactionSchema
-    }
+        createdAt: {
+            type: Date,
+            default: Date.now(),
+        },
+        username: {[
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'user',
+            }],
+            type: String,
+            required: true,
+        },
+        reactions: [
+            {
+            type: Schema.Types.Array,
+            ref: 'reactionSchema',
+            },
+        ],
+    },
 )
+
+const thought = model('thought', thoughtSchema);
+
+module.exports = thought;
