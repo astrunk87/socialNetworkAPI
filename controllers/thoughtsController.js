@@ -1,4 +1,4 @@
-const thought = require('../models/thought');
+const thought = require('../models/');
 
 module.exports = {
     async getThought(req, res) {
@@ -24,7 +24,7 @@ module.exports = {
         }
     },
 
-    async createThought(req.res) {
+    async createThought(req, res) {
         try{
             const dbThoughtData = await thought.create(req.body);
             res.json(dbThoughtData);
