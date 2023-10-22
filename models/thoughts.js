@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose');
 
 const thoughtsSchema = new Schema(
   {
@@ -18,8 +18,8 @@ const thoughtsSchema = new Schema(
         ref: "user",
       },
     ],
-    type: String,
-    required: true,
+    // type: String,
+    // required: true,
   },
   {
     reactions: [
@@ -31,6 +31,6 @@ const thoughtsSchema = new Schema(
   }
 );
 
-const thoughts = model("thoughts", thoughtsSchema);
+const thoughts = model('thoughts', thoughtsSchema);
 
 module.exports = thoughts;

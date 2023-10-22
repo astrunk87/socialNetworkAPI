@@ -1,9 +1,9 @@
-const thought = require('../models/');
+const thoughts = require('../models/thoughts');
 
 module.exports = {
     async getThought(req, res) {
         try{
-            const thoughts = await thought.find();
+            const thoughts = await thoughts.find();
             res.json(thoughts);
         } catch (err) {
             res.status(500).json(err);
@@ -11,14 +11,14 @@ module.exports = {
     },
     async getSingleThought(req, res) {
         try{
-            const thought = await thought.findOne({ _id: req.params.thoughtId})
+            const thoughts = await thoughts.findOne({ _id: req.params.thoughtsId})
             .select('-__v');
 
-            if (!thought) {
+            if (!thoughts) {
                 return res.status(404).json({ mesage: 'no thought with that id'});
             }
 
-            res.json(thought);
+            res.json(thoughts);
         } catch (err) {
             res.status(500).json(err);
         }
@@ -26,8 +26,8 @@ module.exports = {
 
     async createThought(req, res) {
         try{
-            const dbThoughtData = await thought.create(req.body);
-            res.json(dbThoughtData);
+            const dbThoughtsData = await thoughts.create(req.body);
+            res.json(dbThoughtsData);
         } catch (err) {
             res.status(500).json(err);
         }

@@ -7,6 +7,6 @@ const {
 
 router.route('/').get(getThought).post(createThought);
 
-router.route('/:thoughtId').get(getSingleThought);
+router.route('/:thoughtsId').get(getSingleThought);
 
 module.exports = router;
