@@ -48,8 +48,8 @@ module.exports = {
     async updateThought(req, res) {
         try{
             const thoughts = await Thoughts.findByIdAndUpdate(
-                { _id: req.body.id}
-                { $set: req.body}
+                { _id: req.body.id},
+                { $set: req.body},
                 { runValidators: true, new: true}
             );
             res.status(200).json(thoughts);
@@ -66,7 +66,7 @@ module.exports = {
                 { $pull: {thoughts: req.params.id}},
                 { new: true}
             );
-            res.status(200).json(thoughts),
+            res.status(200).json(thoughts);
         } catch (err) {
             res.status(500).json(err);
         }
