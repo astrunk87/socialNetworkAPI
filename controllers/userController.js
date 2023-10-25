@@ -1,11 +1,12 @@
 // this file pulled from class work
 
-const {User} = require('../models/user');
+const User = require('../models/user');
 
 module.exports = {
   async getUsers(req, res) {
     try {
-      const user = await User.find().populate({path: "thoughts", select: "-__v"});
+      const user = await User.find();
+      // .populate({path: "thoughts", select: "-__v"});
       res.status(200).json(user);
     } catch (err) {
       res.status(500).json(err);

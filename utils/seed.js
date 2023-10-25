@@ -8,7 +8,6 @@ connection.once('open', async() => {
     console.log('connected');
 
     await user.deleteMany({});
-    // await user.collection.insertMany(seeds);
     await user.collection.insertMany(seeds);
 
     console.table(seeds);
