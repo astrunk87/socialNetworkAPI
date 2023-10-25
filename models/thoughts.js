@@ -1,5 +1,10 @@
-const { Schema, model } = require('mongoose');
-const usernameSchema = require('./user') 
+const { Schema, model } = require("mongoose");
+const reactionSchema = require("./reactions");
+
+// date format with help from class mate greg
+dateFormat = (dateTime) => {
+  return dateTime.toLocaleString();
+};
 
 const thoughtsSchema = new Schema(
   {
@@ -11,26 +16,28 @@ const thoughtsSchema = new Schema(
     },
     createdAt: {
       type: Date,
-      default: Date.now(),
+      default: Date.now,
+      get: dateFormat,
     },
-  //   username: [ usernameSchema],
-   
-  // },
-  // {
-    reactions: [
-      {
-        type: Schema.Types.Array,
-        ref: "reactionSchema",
-      },
-    ],
+    username: {
+      type: String,
+      required: true,
+    },
+    reactions: [reactionSchema]
   },
   {
     toJSON: {
+      virtuals: true,
       getters: true,
     },
+    
   }
 );
 
-const thoughts = model('thoughts', thoughtsSchema);
+thoughtsSchema.virtual("reactionCount").get(function () {
+  return this.reactions.length;
+});
+
+const thoughts = model("thoughts", thoughtsSchema);
 
 module.exports = thoughts;

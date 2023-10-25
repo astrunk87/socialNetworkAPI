@@ -1,4 +1,8 @@
-const { Schema, model} = require('mongoose');
+const { Schema, Types} = require('mongoose');
+
+const timeFormat = (dateTime) => {
+    return dateTime.toLocaleString()
+};
 
 const reactionSchema = new Schema(
     {
@@ -18,10 +22,15 @@ const reactionSchema = new Schema(
         createAt: {
             type: Date,
             default: Date.now(),
+            get: timeFormat,
         },
     },
-)
+    {
+        toJSON: {
+            getters: true
+        }
+    }
+);
 
-const reaction = model('reaction', reactionSchema);
 
-module.exports = reaction; 
+module.exports = reactionSchema; 
