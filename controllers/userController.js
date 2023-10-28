@@ -1,4 +1,4 @@
-// this file pulled from class work
+// the start of this file pulled from class work
 
 const User = require('../models/user');
 
@@ -14,7 +14,7 @@ module.exports = {
   },
   async getSingleUser(req, res) {
     try {
-      const user = await User.findOne({ _id: req.params.userId })
+      const user = await User.findOne({ _id: req.params.id })
 
       if (!user) {
         return res.status(404).json({ message: 'No user with that ID' });
@@ -38,7 +38,7 @@ module.exports = {
       const user = await User.findOneAndUpdate(
         { _id: req.params.id},
         { $set: req.body},
-        { runValidators: true, new:true}
+        { new:true,runValidators: true }
       )
       res.status(200).json(user)
     } catch (err) {
@@ -47,7 +47,7 @@ module.exports = {
   },
   async deleteUser(req, res){
     try {
-        const user = await User.findByOneAndDelete(
+        const user = await User.findOneAndDelete(
             {_id: req.params.id}
         )
         res.status(200).json(user)
@@ -68,7 +68,7 @@ module.exports = {
 
         const userFriend = await User.findOneAndUpdate(
           { _id: req.params.friendId},
-          { $push: {friends: req.params.friendId}},
+          { $push: {friends: req.params.userId}},
           { new:true}
         )
         res.status(200).json(newFriend, userFriend)
@@ -82,13 +82,13 @@ module.exports = {
    async deleteFriend(req, res) {
     try {
         const removeFriend = await User.findOneAndUpdate(
-          { _id: req.params.userId},
-          { $pull: {friends: req.params.userId}},
+          { _id: req.body.userId},
+          { $pull: {friends: req.body.friendId}},
           { new:true}
         )
         const removeUserFriend = await User.findOneAndUpdate(
-          { _id: req.params.friendId},
-          { $pull: {friends: req.params.friendId}},
+          { _id: req.body.friendId},
+          { $pull: {friends: req.body.userId}},
           { new: true}
         )
         res.status(200).json(removeFriend, removeUserFriend)
