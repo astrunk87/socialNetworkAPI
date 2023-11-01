@@ -38,7 +38,7 @@ module.exports = {
       const user = await User.findOneAndUpdate(
         { _id: req.params.id},
         { $set: req.body},
-        { new:true,runValidators: true }
+        { new:true, runValidators: true }
       )
       res.status(200).json(user)
     } catch (err) {
@@ -83,12 +83,12 @@ module.exports = {
     try {
         const removeFriend = await User.findOneAndUpdate(
           { _id: req.body.userId},
-          { $pull: {friends: req.body.friendId}},
+          { $pull: {friends: req.params.friendId}},
           { new:true}
         )
         const removeUserFriend = await User.findOneAndUpdate(
           { _id: req.body.friendId},
-          { $pull: {friends: req.body.userId}},
+          { $pull: {friends: req.params.userId}},
           { new: true}
         )
         res.status(200).json(removeFriend, removeUserFriend)
