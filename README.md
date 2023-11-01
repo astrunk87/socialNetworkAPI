@@ -13,8 +13,8 @@
 
 
 ## description
- I wanted to create a version of a social network to help futher my skills.
- with this project you can have your own private social network.
+ I wanted to create a version of a social networks back en to help futher my skills.
+ With this project you can have your own private social network back end.
  In doing this project I gained a better understanding of mongodb, mongoose and futhered my comfort with routes and databases.
 
 ## Installation
@@ -32,8 +32,8 @@ https://github.com/astrunk87/socialNetworkAPI/assets/134554632/ef2b4dcf-4858-489
   Licensed under the [MIT](https://choosealicense.com/licenses/mit/) license 
 
 ## Contributions 
-  my class mate Greg Stevenson helped guide me on some parts, it is noted in the code.
-  I referneced class work and the mini project we did.
+  My class mate Greg Stevenson helped guide me on some parts, it is noted in the code.
+  I also referneced class work and the mini project we did.
 
 ## Testing 
   none
