@@ -22,6 +22,11 @@
 
 ## usage
   Once you are connected using the steps above you can go into insomina and start using the routes to add users, add thoughts, add reactions. You can also updated and delete as well. The video link below shows a walk through of the app working and how to use the routes.
+  
+
+https://github.com/astrunk87/socialNetworkAPI/assets/134554632/ef2b4dcf-4858-4894-b5a2-07740c2de2c5
+
+
 
 ## License
   Licensed under the [MIT](https://choosealicense.com/licenses/mit/) license 
